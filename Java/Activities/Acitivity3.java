@@ -1,4 +1,4 @@
-package activity3;
+package activities;
 
 public class Acitivity3 {
 
