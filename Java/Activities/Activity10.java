@@ -1,4 +1,4 @@
-package activity10;
+package activities;
 
 import java.util.HashSet;
 
