@@ -29,7 +29,7 @@ public class Activity2 {
         System.out.println(message);
 
         // Close the browser
-        //driver.quit();
+        driver.quit();
 	}
 
 }
