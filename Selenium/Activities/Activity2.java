@@ -23,9 +23,7 @@ public class Activity2 {
         // Find the password field and enter the password
         driver.findElement(By.id("password")).sendKeys("password");
         // Find the login button and click it
-	driver.findElement(By.className("svelte-1pdjkmx")).click();
-	//driver.findElement(By.cssSelector("button.svelte-1pdjkmx")).click()
-
+	driver.findElement(By.cssSelector("button.svelte-1pdjkmx")).click()
 		// Print the confirmation message
         String message = driver.findElement(By.tagName("h1")).getText();
         System.out.println(message);
