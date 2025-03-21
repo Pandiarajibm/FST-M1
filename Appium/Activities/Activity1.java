@@ -1,84 +1,92 @@
-package liveProject;
+package activities;
 
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.options.UiAutomator2Options;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.time.Duration;
-import java.util.List;
+import io.appium.java_client.AppiumBy;
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
+import io.appium.java_client.ios.options.XCUITestOptions;
 
-import static org.testng.Assert.assertEquals;
 
-public class Activity1 {
-	// Declare driver
-	AndroidDriver driver;
-	WebDriverWait wait;
 
-	// Setup method
-	@BeforeClass
-	public void setUp() throws MalformedURLException {
-		// Desired Capabilities
-		UiAutomator2Options caps = new UiAutomator2Options();
-		caps.setPlatformName("android");
-		caps.setAutomationName("UiAutomator2");
-		caps.setAppPackage("com.app.todolist");
-		caps.setAppActivity(".view.MainActivity");
-		caps.noReset();
+	public class Activity1 {
+	    // Driver Declaration
+		AppiumDriver driver;
+		//AndroidDriver driver;
 
-		// Appium Server URL
-		URL serverURL = new URL("http://localhost:4723");
+	    // Set up method
+	    @BeforeClass
+	    //public void setUp() throws MalformedURLException, URISyntaxException {
+	    
+	    public void androidSetUP() throws MalformedURLException, URISyntaxException{
+			// Set Desired Capabilities
+	        UiAutomator2Options options = new UiAutomator2Options().
+	        setPlatformName("android").
+	        setAutomationName("UiAutomator2").
+	        setAppPackage("com.google.android.calculator").
+	        setAppActivity("com.android.calculator2.Calculator").
+//          setApp("path/to/apk").   <- Path to apk file calculator app 
+	        noReset();
 
-		// Initialization of driver
-		driver = new AndroidDriver(serverURL, caps);
-		// Initialization of wait
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	        // Server Address
+	        URL serverURL = new URI("http://127.0.0.1:4723").toURL();
+
+	        // Driver Initialization
+	        driver = new AndroidDriver(serverURL, options);
+	    }
+		
+		@BeforeClass
+//		public void iosSetUP() throws MalformedURLException, URISyntaxException {
+			// Set Desired Capabilities
+//			XCUITestOptions options = new XCUITestOptions().
+//				setPlatformName("ios").
+//				setAutomationName("XCUITest").
+//				setApp("path/to/file.ipa").
+			//		noReset();
+			// Server Address
+	    //    URL serverURL = new URI("http://127.0.0.1:4723").toURL();
+			
+	     // Driver Initialization
+	  //      driver = new IosDriver(serverURL, options);
+	//	}
+		
+
+	    // Test method
+	    @Test
+	    public void multiplyTest() {
+	        // clear existing values
+			//driver.findElement(AppiumBy.id("clr")).click();
+			// Perform the calculation
+			//in appium inspector/ appium emulator tap digit 5, get the id value 
+			driver.findElement(AppiumBy.id("digit_5")).click();
+	        //find and tap the multiply symbol
+			driver.findElement(AppiumBy.accessibilityId("multiply")).click();
+			//in appium inspector tap digit 5, get the id value 
+	        driver.findElement(AppiumBy.id("digit_8")).click();
+	        driver.findElement(AppiumBy.accessibilityId("equals")).click();
+
+	        // Find the result
+	        String result = driver.findElement(AppiumBy.id("result_final")).getText();
+
+	        // Assertion
+	        Assert.assertEquals(result, "40");
+	    }
+
+
+	    // Tear down method
+	    @AfterClass
+	    public void tearDown() {
+	        // Close the app
+	        driver.quit();
+	    }
 	}
 
-	@Test
-	public void tasksTest1() {
-		// Tasks to be added
-		String[][] tasksToAdd = {
-			{"Complete Activity 1", "High"}, 
-			{"Complete Activity 2", "Medium"},
-			{"Complete Activity 3", "Low"}
-		};
-
-		// Repeat actions for each task to add
-		for (String tasks[] : tasksToAdd) {
-			// Find the create new task button and click it
-			driver.findElement(AppiumBy.id("fab_new_task")).click();
-			// Wait for input field to show and then enter the task name
-			wait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.id("et_new_task_name")))
-					.sendKeys(tasks[0]);
-			// Set the priority
-			driver.findElement(AppiumBy.id("com.app.todolist:id/tv_new_task_priority")).click();
-			wait.until(ExpectedConditions.elementToBeClickable(
-				AppiumBy.xpath("//android.widget.TextView[@resource-id='android:id/title' and @text='"+ tasks[1] +"']")))
-				.click();
-			// Click Save
-			driver.findElement(AppiumBy.id("bt_new_task_ok")).click();
-		}
-
-		// Assertions
-		// Find all the added tasks
-		List<WebElement> tasksAdded = wait.until(ExpectedConditions.
-			numberOfElementsToBe(AppiumBy.id("com.app.todolist:id/rl_exlv_task_group_root"), 3));
-		// Verify number of tasks added
-		assertEquals(tasksAdded.size(), 3);
-	}
-
-	@AfterClass
-	public void tearDown() {
-		// Close the app
-		driver.quit();
-	}
-
-}

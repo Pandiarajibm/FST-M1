@@ -1,75 +1,61 @@
-package liveProject;
+package activities;
 
-import static activities.ActionsBase.longPress;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.time.Duration;
 
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-
-import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.options.UiAutomator2Options;
 
 public class Activity2 {
-	// Declare driver
-	AndroidDriver driver;
-	WebDriverWait wait;
+    // Driver Declaration
+    AndroidDriver driver;
 
-	// Setup method
-	@BeforeClass
-	public void setUp() throws MalformedURLException {
-		// Desired Capabilities
-		UiAutomator2Options caps = new UiAutomator2Options();
-		caps.setPlatformName("android");
-		caps.setAutomationName("UiAutomator2");
-		caps.setAppPackage("com.app.todolist");
-		caps.setAppActivity(".view.MainActivity");
-		caps.noReset();
+    // Set up method
+    @BeforeClass
+    public void setUp() throws MalformedURLException, URISyntaxException {
+        // Desired Capabilities
+        UiAutomator2Options options = new UiAutomator2Options();
+        options.setPlatformName("android");
+        options.setAutomationName("UiAutomator2");
+        options.setAppPackage("com.android.chrome");
+        options.setAppActivity("com.google.android.apps.chrome.Main");
+        options.noReset();
 
-		// Appium Server URL
-		URL serverURL = new URL("http://localhost:4723");
+        // Set the Appium server URL
+        URL serverURL = new URI("http://localhost:4723").toURL();
 
-		// Initialization of driver
-		driver = new AndroidDriver(serverURL, caps);
-		// Initialization of wait
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	}
+        // Driver Initialization
+        driver = new AndroidDriver(serverURL, options);
 
-	@Test
-	public void tasksTest2() {
-		// Get the size of the screen
-		Dimension dims = driver.manage().window().getSize();
-		// Set the point of long press
-		Point start = new Point((int) (dims.getWidth() * .50), (int) (dims.getHeight() * .15));
-		
-		// Perform long press on the first list item
-		longPress(driver, start);
-		// Select edit task
-		driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Edit To-Do Task']")).click();
-		
-		// Set a deadline for the coming weekend
-		driver.findElement(AppiumBy.id("tv_todo_list_deadline")).click();
-		driver.findElement(AppiumBy.accessibilityId("15 February 2025")).click();
-		// Save details
-		driver.findElement(AppiumBy.id("bt_deadline_ok")).click();
-		driver.findElement(AppiumBy.id("bt_new_task_ok")).click();
+        // Open the page in Chrome
+        driver.get("https://training-support.net");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    }
 
-		// Assertions
-		String expectedDeadline = driver.findElement(AppiumBy.id("tv_exlv_task_deadline")).getText();
-		Assert.assertEquals(expectedDeadline, "Deadline: 15.02.2025");
-	}
+    // Test method
+    @Test
+    public void chromeTest() {
+        // Find heading on the page
+        String pageHeading = driver.findElement(AppiumBy.xpath(
+                "//android.widget.TextView[@text='Training Support']"
+        )).getText();
 
-	@AfterClass
-	public void tearDown() {
-		// Close the app
-		driver.quit();
-	}
+        // Print to console
+        System.out.println("Heading: " + pageHeading);
+
+        // Find and click the About Us link
+        driver.findElement(AppiumBy.accessibilityId("About Us")).click();
+
+        // Find heading of new page and print to console
+        String aboutPageHeading = driver.findElement(AppiumBy.xpath(
+                "//android.widget.TextView[@text='About Us']"
+        )).getText();
+        System.out.println(aboutPageHeading);
+    }
+
+
+    // Tear down method
+    @AfterClass
+    public void tearDown() {
+        // Close the app
+        driver.quit();
+    }
 }
