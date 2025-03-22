@@ -58,6 +58,16 @@ public class Activity2 {
 		System.out.println(pageHeading);
 		
 		//Find About Us botton, click to go to next page and assert page heading of next page
+	androidDriver.findElement(AppiumBy.accessibilityId("About Us")).click();
+	
+ 
+	
+        // Find heading of new page and print to console
+	
+        String aboutPageHeading = androidDriver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='About Us']"
+	)).getText();
+	System.out.println(aboutPageHeading);
+
 	}
 
 	@AfterClass
