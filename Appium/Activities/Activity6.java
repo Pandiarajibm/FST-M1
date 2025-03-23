@@ -1,6 +1,6 @@
 package activities;
 import static org.testng.Assert.assertTrue;
-
+import static activities.ActionsBase.doSwipe;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -51,8 +51,8 @@ public class Activity6{
 		// Get the size of the screen
 		Dimension dims = driver.manage().window().getSize();
 		// Set the start and end points
-		Point start = new Point((int) (dims.getWidth() * .50), (int) (dims.getHeight() * .75));
-		Point end = new Point((int) (dims.getWidth() * .666), (int) (dims.getHeight() * .75));
+		Point start = new Point((int) (dims.getWidth() * .50), (int) (dims.getHeight() * .72));
+		Point end = new Point((int) (dims.getWidth() * .666), (int) (dims.getHeight() * .72));
 		// Perform swipe
 		ActionsBase.doSwipe(driver, start, end, 2000);
 
