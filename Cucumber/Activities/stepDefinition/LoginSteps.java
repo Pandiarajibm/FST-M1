@@ -1,6 +1,8 @@
 package stepDefinitions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -27,20 +29,6 @@ public class LoginSteps extends BaseClass {
 		driver.findElement(By.id("password")).sendKeys("password");
 	}
 
-	@When("the user enters {string} and {string}")
-	public void enterCredentialsFromInputs(String username, String password) {
-		// Find the input fields
-		WebElement usernameField = driver.findElement(By.id("username"));
-		WebElement passwordField = driver.findElement(By.id("password"));
-		// Clear the fields
-		usernameField.clear();
-		passwordField.clear();
-		// Find username field and enter username
-		usernameField.sendKeys(username);
-		// Find password field and enter password
-		passwordField.sendKeys(password);
-	}
-
 	@And("clicks the submit button")
 	public void clickSubmit() {
 		// Find the submit button and click it
@@ -54,14 +42,6 @@ public class LoginSteps extends BaseClass {
 		String message = driver.findElement(By.cssSelector("h2.mt-5")).getText();
 		// Assert message
 		Assertions.assertEquals("Welcome Back, Admin!", message);
-	}
-
-	@Then("get the confirmation text and verify message as {string}")
-	public void confirmMessageAsInput(String expectedMessage) {
-		// Find the confirmation message
-		wait.until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("h2.mt-5"), "Welcome"));
-		String message = driver.findElement(By.cssSelector("h2.mt-5")).getText();
-		// Assert message
-		Assertions.assertEquals(expectedMessage, message);
+		System.out.println(message);
 	}
 }

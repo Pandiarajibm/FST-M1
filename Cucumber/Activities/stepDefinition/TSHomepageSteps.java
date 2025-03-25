@@ -1,3 +1,5 @@
+package stepDefinitions;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.openqa.selenium.By;
@@ -12,17 +14,20 @@ public class TSHomepageSteps extends BaseClass {
 		public void openTSHomepage() throws Throwable {
 		// Open the browser
 		driver.get("https://training-support.net");
+		String titleHeading= driver.getTitle();
+		System.out.println(titleHeading);
 		//Assertion to check if are in the correct page
 		assertEquals(driver.getTitle(), "Training Support");
+		
 	}
 
 	@When("the user clicks on the About Us link")
-	public void clickButton() throws Throwable {
+		public void clickButton() throws Throwable {
 	    //find and click About Us button
 		driver.findElement(By.linkText("About Us")).click();
 	}
 
-	@Then("they are redirected to another page")
+	@Then("the user is redirected to the About page")
 	public void aboutUsPage() throws Throwable {
 		//wait.until(ExpectedConditions.titleIs("About Training Support"));
 		assertEquals(driver.getTitle(), "About Training Support");
