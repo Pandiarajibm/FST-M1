@@ -54,8 +54,8 @@ public class HRMActivity8 {
 			WebElement companyFrom=driver.findElement(By.id("assignleave_txtFromDate"));
 			WebElement companyTo=driver.findElement(By.id("assignleave_txtToDate"));
 			
-			companyName.clear();
-			companyJob.clear();
+			employeeName.clear();
+			leaveType.clear();
 			companyFrom.clear();
 			companyTo.clear();
 			employeeName.sendKeys("Rachana");
@@ -76,9 +76,10 @@ public class HRMActivity8 {
 
 		}
 			
-		@AfterClass(alwaysRun = true)
-		public void closeure() {
-			driver.close();
-		}
-
+		@AfterClass
+		public void tearDown() {
+			
+			// Close the browser
+			driver.quit();
+			
 	}
