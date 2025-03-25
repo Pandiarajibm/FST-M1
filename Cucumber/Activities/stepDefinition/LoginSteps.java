@@ -41,6 +41,8 @@ public class LoginSteps extends BaseClass {
         usernameField.sendKeys(username);
         // Find password field and enter password
         passwordField.sendKeys(password);
+        String enteredUsername= driver.findElement(By.id("username")).getAttribute("value");
+        System.out.println(enteredUsername);
     }
 
     @And("clicks the submit button")
