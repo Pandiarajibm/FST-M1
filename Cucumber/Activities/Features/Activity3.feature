@@ -13,8 +13,8 @@ Scenario: Testing with Simple Alert
 
 @ConfirmAlert
 Scenario: Testing with Confirm Alert
-    Given User is on the page
-    When User clicks the Confirm Alert button
+		Given User is on the page
+		When User clicks the Confirm Alert button
     Then Alert opens
     And Read the text from it and print it
     And Close the alert with Cancel

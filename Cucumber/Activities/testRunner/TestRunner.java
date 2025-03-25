@@ -9,12 +9,12 @@ import io.cucumber.junit.platform.engine.Constants;
 
 @Suite
 @IncludeEngines("cucumber")
-@SelectClasspathResource("Features")
-@ConfigurationParameter(key = Constants.GLUE_PROPERTY_NAME, value = "stepDefinitions")
-@ConfigurationParameter(key = Constants.FILTER_TAGS_PROPERTY_NAME, value = "@activity3")
+@SelectClasspathResource("Features")  // Path to the Features folder
 @ConfigurationParameter(
-	key = Constants.PLUGIN_PROPERTY_NAME,
-	value = "pretty, html:Reports/HTML_Report.html, junit:Reports/XML_Report.xml, json:Reports/JSON_Report.json"
+  key = Constants.GLUE_PROPERTY_NAME, value = "stepDefinitions"
 )
+@ConfigurationParameter( 
+		key = Constants.FILTER_TAGS_PROPERTY_NAME, value = "@activity6"
+		)
 
 public class TestRunner {}

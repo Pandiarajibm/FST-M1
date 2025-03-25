@@ -1,13 +1,12 @@
 package stepDefinitions;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
-
-import org.openqa.selenium.By;
-
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 
 public class DataTableExampleSteps extends BaseClass {
 
@@ -15,8 +14,8 @@ public class DataTableExampleSteps extends BaseClass {
 	public void completeRequirement() {
         driver.get("https://training-support.net/webelements/todo-list");
 		System.out.println("Given completed");
-		assertEquals.(driver.getTitle(), "Selenium: To-Do List")
-	}
+		assertEquals(driver.getTitle() , "Selenium: To-Do List");
+		}
 
 	@When("user adds the following tasks")
 	public void inputTasks(DataTable inputTasks) throws InterruptedException {

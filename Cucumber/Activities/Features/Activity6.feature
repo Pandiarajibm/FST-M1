@@ -1,3 +1,4 @@
+@activity6
 Feature: To test input with DataTables
 
 @TasksDataTable
