@@ -1,14 +1,20 @@
 package activities;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Reporter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
 import org.openqa.selenium.interactions.*;
+
 
 		public class HRMActivity9 {
 		
@@ -37,46 +43,39 @@ import org.openqa.selenium.interactions.*;
 			public void infoPage() {
 				 
 				Actions builder = new Actions(driver);
-				WebElement menu= driver.findElement(By.id("menu_admin_viewAdminModule"));
+				WebElement menu= driver.findElement(By.id("menu_pim_viewMyDetails"));
 				menu.click();
-				System.out.println("Updating My info details" );
+				System.out.println("Checking My info details" );
 				builder.pause(3000).scrollByAmount(0, 300).pause(500).build().perform();
-				WebElement qual=driver.findElement(By.xpath("//a[contains(text(),'Qualification')]"));
-				//a.pause(1000).scrollToElement(qual).pause(1000).click().build().perform();
-				qual.click();
-				System.out.println("Adding my qualification details" );
-				WebElement addWork=driver.findElement(By.xpath("//input[@id='addWorkExperience']"));
-				addWork.click();
-				System.out.println("Adding my experience details" );
-				WebElement companyName=driver.findElement(By.id("experience_employer"));
-				WebElement companyJob=driver.findElement(By.id("experience_jobtitle"));
-				WebElement companyFrom=driver.findElement(By.id("experience_from_date"));
-				WebElement companyTo=driver.findElement(By.id("experience_to_date"));
-				
-				companyName.clear();
-				companyJob.clear();
-				companyFrom.clear();
-				companyTo.clear();
-				companyName.sendKeys("IBM");
-				companyJob.sendKeys("CEO");
-				companyFrom.sendKeys("2020-03-16");
-				companyTo.sendKeys("2020-03-16");
-
-				driver.findElement(By.id("btnWorkExpSave")).click();
-						
-				
-				//a.scrollToElement(qual).pause(1000).click().pause(1000).perform();
-				//WebElement qual=driver.findElement(By.linkText("Qualification"));
-				//jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+				WebElement emergencyContact=driver.findElement(By.xpath("//a[contains(text(),'Emergency Contacts')]"));
+				emergencyContact.click();
 				
 				
+				WebElement emgcontactList = driver.findElement(By.id("emgcontact_list"));
+				System.out.println(emgcontactList);
+				List<WebElement> allContacts = driver.findElements(By.xpath("//table[@class='list view table-responsive']/tbody/tr"));
+				int count = 0;
+				for (Iterator<WebElement> iterator = allContacts.iterator(); iterator.hasNext();) {
+					if(count < 5) {
+						WebElement row = (WebElement) iterator.next();
+						//type = name
+						WebElement nameCell = row.findElement(By.xpath(".//td[@type='name']//a"));
+						//type = relate
+						WebElement relationCell = row.findElement(By.xpath(".//td[@type='Relationship']//a"));
+						WebElement HomeCell = row.findElement(By.xpath(".//td[@type='Home Telephone']//a"));
+						WebElement mobileCell = row.findElement(By.xpath(".//td[@type='Mobile']//a"));
+						WebElement workCell = row.findElement(By.xpath(".//td[@type='Work Telephone']//a"));
+						Reporter.log( " Contact Name: " + nameCell.getText() + " Home Telephone: " + HomeCell.getText() + " Mobile: " + mobileCell.getText() + " Work Telephone: " + workCell.getText(), true);
+					} else 
+					{
+						break;
+					}
+					count++;
+				}
 				
+							
 			}
-			private String windowscscrollBy(int i, int j) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-
+			
 			@AfterClass
 
 			public void tearDown() {

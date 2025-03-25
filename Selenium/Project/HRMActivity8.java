@@ -43,28 +43,39 @@ public class HRMActivity8 {
 		@Test(priority=2)
 		public void applyLeave() {
 			// Navigate to Sales
-			WebElement sales = driver.findElement(By.xpath("//a[@id='grouptab_0']"));
-			sales.click();
+			WebElement leave = driver.findElement(By.linkText("Apply Leave"));//  ("//a[@id='grouptab_0']"));
+			leave.click();
 
 			// clicking Accounts
-			wait.until(ExpectedConditions.elementToBeClickable(By.id("moduleTab_9_Accounts"))).click();
-
-			// Table element
-			wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//table[contains(@class,'list view table')]")));
-
-			List<WebElement> rows = driver.findElements(By.xpath("//table[contains(@class,'list view tab')]/tbody/tr"));
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("menu_leave_applyLeave"))).click();
 			
-			for (int i = 0; i<=9; i++) 
-			{
-				if (i%2 == 0)
-				{ 
-					System.out.println(rows.get(i).getText());
-				
-				}	
-				
-			}
-		}
+			WebElement employeeName=driver.findElement(By.id("applyleave_txtEmployee_empName"));
+			WebElement leaveType=driver.findElement(By.id("applyleave_txtLeaveType"));
+			WebElement companyFrom=driver.findElement(By.id("assignleave_txtFromDate"));
+			WebElement companyTo=driver.findElement(By.id("assignleave_txtToDate"));
+			
+			companyName.clear();
+			companyJob.clear();
+			companyFrom.clear();
+			companyTo.clear();
+			employeeName.sendKeys("Rachana");
+			leaveType.sendKeys("DayOff");
+			companyFrom.sendKeys("2025-04-16");
+			companyTo.sendKeys("2025-04-18");
 
+			driver.findElement(By.id("Apply")).click();
+
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("menu_leave_viewMyLeaveList"))).click();
+			
+			WebElement FromDate=driver.findElement(By.id("calFromDate"));
+			WebElement toDate=driver.findElement(By.id("calToDate"));
+			FromDate.sendKeys("2025-04-16");
+			toDate.sendKeys("2025-04-18");
+			
+			driver.findElement(By.xpath("//input[contains(@value,'Search')]")).click();
+
+		}
+			
 		@AfterClass(alwaysRun = true)
 		public void closeure() {
 			driver.close();
