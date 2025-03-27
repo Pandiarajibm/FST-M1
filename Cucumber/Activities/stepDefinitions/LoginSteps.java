@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,10 +15,11 @@ public class LoginSteps extends BaseClass {
     @Given("the user is on the login page")
     public void openPage() {
         // Open the login page
-        driver.get("https://training-support.net/webelements/login-form");
+       driver.get("https://training-support.net/webelements/login-form");
         // Assert page title
-        Assertions.assertEquals("Selenium: Login Form", driver.getTitle());
-    }
+       System.out.println(driver.getTitle());
+       assertEquals("Selenium: Login Form", driver.getTitle());
+  }
 
     @When("the user enters username and password")
     public void enterCredentials() {
@@ -26,6 +28,7 @@ public class LoginSteps extends BaseClass {
         // Find password field and enter password
         driver.findElement(By.id("password")).sendKeys("password");
         String enteredUsername= driver.findElement(By.id("username")).getAttribute("value");
+        assertEquals(enteredUsername, "admin");
         System.out.println(enteredUsername);
     }
 
@@ -42,6 +45,7 @@ public class LoginSteps extends BaseClass {
         // Find password field and enter password
         passwordField.sendKeys(password);
         String enteredUsername= driver.findElement(By.id("username")).getAttribute("value");
+        assertEquals(enteredUsername, "admin");
         System.out.println(enteredUsername);
     }
 
@@ -56,21 +60,22 @@ public class LoginSteps extends BaseClass {
         // Find the confirmation message
         wait.until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector("h2.mt-5"), "Welcome"));
         String message = driver.findElement(By.cssSelector("h2.mt-5")).getText();
-        // Assert message
-        Assertions.assertEquals("Welcome Back, Admin!", message);
+                // Assert message
+        assertEquals("Welcome Back, Admin!", message);
+       
     }
 
     @Then("get the confirmation text and verify message as {string}")
     public void confirmMessageAsInput(String expectedMessage) {
         // Find the message
         String message = "NOT FOUND";
-        if (expectedMessage.contains("Invalid")) {
+                if (expectedMessage.contains("Invalid")) {
             message = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h2#subheading"))).getText();
         } else {
             message = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("h2.text-center"))).getText();
         }
         // Assert message
-       // 	assertEquals(expectedMessage, message);
+        assertEquals(expectedMessage, message);
     }
 }
 
