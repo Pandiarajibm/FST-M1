@@ -2,10 +2,14 @@ package activities;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import org.testng.annotations.Test;
+
 import io.restassured.response.Response;
+
 
 public class Activity1 {
 	@Test(priority = 1)
