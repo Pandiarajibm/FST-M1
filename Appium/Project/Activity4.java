@@ -22,6 +22,7 @@ import java.time.Duration;
 
 import static activities.ActionsBase.doSwipe;
 
+
 public class Activity4 {
     AndroidDriver driver;
     WebDriverWait wait;

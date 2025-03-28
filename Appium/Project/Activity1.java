@@ -17,6 +17,7 @@ import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
+
 public class Activity1 {
 	// Declare driver
 	AndroidDriver driver;
