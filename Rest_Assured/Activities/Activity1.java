@@ -1,66 +1,56 @@
 package activities;
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 
-import groovy.util.logging.Log;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.equalTo;
+import java.util.HashMap;
+import java.util.Map;
+import org.testng.annotations.Test;
+import io.restassured.response.Response;
 
 public class Activity1 {
-
-	@Test(priority=1)
+	@Test(priority = 1)
 	public void addNewPet() {
-	
-		Map<String, Object> = new HashMap<>();
-		reqBody.put("id",48496)
-		reqBody.put("name", "Giley")
-		reqBody.put("status", "alive")
-	
-		//Send request, get response , assert response
-		given().baseURI("https://petstore.swagger.io/v2/pet")
-				.header("Content-Type","application/json")
-				.body(reqBody)
-				.log().all()
-		.when
-				.post()
-		.then()
-				.statusCode(200)
-				.body("name",equalTo("Giley"))
-				.body("status",equalTo("alive"));
-	}
-	@Test(priority=2)
-	public void getPetInfo() {
-		
-	given().
-		baseURI("https://petstore.swagger.io/v2/pet/")
-		.header("Content-Type","application/json")
-		.pathParam("petId",48496)
-		.log().all()
-	.when
-		.get("/{petId}")
-	.then()
-		.log().all()
-		.statusCode(200)
-		.body("name",equalTo("Giley"))
-		.body("status",equalTo("alive"))
-		
-		
-		
-	}
-		
-	}
-	@Test(priority=3)
-	public void deletePet() {
-	given().baseURI("https://petstore.swagger.io/v2/pet")
-		.header("Content-Type","application/json")
-		.pathParam("petId",48496)
-		.log().all()
-		
-	.when
-		.delete("/{petId}")
-	.then().
-		.log().all()
-		.statusCode(200)
-		.body("message",equalTo("48496"))
-		
-}
+		Map<String, Object> reqBody = new HashMap<>();
+		reqBody.put("id", 585858);
+		reqBody.put("name", "Kiley");
+		reqBody.put("status", "alive");
 
+		Response response = given()
+			.baseUri("https://petstore.swagger.io/v2/pet") // Set base URI
+			.header("Content-Type", "application/json") // Set headers
+			.body(reqBody) // Add request body
+			.when().post(); // Send POST request
+
+		// Assertion
+		response.then().body("id", equalTo(585858));
+		response.then().body("name", equalTo("Kiley"));
+		response.then().body("status", equalTo("alive"));
+	}
+
+	@Test(priority = 2)
+	public void getPetInfo() {
+		Response response = given()
+			.baseUri("https://petstore.swagger.io/v2/pet") // Set base URI
+			.header("Content-Type", "application/json") // Set headers
+			.when().pathParam("petId", 585858) // Set path parameter
+			.get("/{petId}"); // Send GET request
+
+		// Assertion
+		response.then().body("id", equalTo(585858));
+		response.then().body("name", equalTo("Kiley"));
+		response.then().body("status", equalTo("alive"));
+	}
+
+	@Test(priority = 3)
+	public void deletePet() {
+		Response response = given()
+			.baseUri("https://petstore.swagger.io/v2/pet") // Set base URI
+			.header("Content-Type", "application/json") // Set headers
+			.when().pathParam("petId", 585858) // Set path parameter
+			.delete("/{petId}"); // Send DELETE request
+
+		// Assertion
+		response.then().body("code", equalTo(200));
+		response.then().body("message", equalTo("585858"));
+	}
 }
