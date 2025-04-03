@@ -20,7 +20,6 @@ public class Activity1 {
 	    // Driver Declaration
 		AppiumDriver driver;
 		//AndroidDriver driver;
-
 	    // Set up method
 	    @BeforeClass
 	    //public void setUp() throws MalformedURLException, URISyntaxException {

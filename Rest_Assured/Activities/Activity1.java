@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 
 import io.restassured.response.Response;
 
-
 public class Activity1 {
 	@Test(priority = 1)
 	public void addNewPet() {
