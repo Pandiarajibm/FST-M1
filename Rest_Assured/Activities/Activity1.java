@@ -15,7 +15,7 @@ public class Activity1 {
 	@Test(priority = 1)
 	public void addNewPet() {
 		Map<String, Object> reqBody = new HashMap<>();
-		reqBody.put("id", 585858);
+		reqBody.put("id", 585898);
 		reqBody.put("name", "Kiley");
 		reqBody.put("status", "alive");
 
@@ -27,7 +27,7 @@ public class Activity1 {
 			.when().post(); // Send POST request
 
 		// Assertion
-		response.then().body("id", equalTo(585858));
+		response.then().body("id", equalTo(585898));
 		response.then().body("name", equalTo("Kiley"));
 		response.then().body("status", equalTo("alive"));
 	}
@@ -37,11 +37,11 @@ public class Activity1 {
 		Response response = given()
 			.baseUri("https://petstore.swagger.io/v2/pet") // Set base URI
 			.header("Content-Type", "application/json") // Set headers
-			.when().pathParam("petId", 585858) // Set path parameter
+			.when().pathParam("petId", 585898) // Set path parameter
 			.get("/{petId}"); // Send GET request
 
 		// Assertion
-		response.then().body("id", equalTo(585858));
+		response.then().body("id", equalTo(585898));
 		response.then().body("name", equalTo("Kiley"));
 		response.then().body("status", equalTo("alive"));
 	}
@@ -51,11 +51,11 @@ public class Activity1 {
 		Response response = given()
 			.baseUri("https://petstore.swagger.io/v2/pet") // Set base URI
 			.header("Content-Type", "application/json") // Set headers
-			.when().pathParam("petId", 585858) // Set path parameter
+			.when().pathParam("petId", 585898) // Set path parameter
 			.delete("/{petId}"); // Send DELETE request
 
 		// Assertions
 		response.then().body("code", equalTo(200));
-		response.then().body("message", equalTo("585858"));
+		response.then().body("message", equalTo("585898"));
 	}
 }
