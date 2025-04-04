@@ -42,6 +42,7 @@ public class Activity1 {
 	    }
 		
 		@BeforeClass
+		//for Apple IOS devices 
 //		public void iosSetUP() throws MalformedURLException, URISyntaxException {
 			// Set Desired Capabilities
 //			XCUITestOptions options = new XCUITestOptions().

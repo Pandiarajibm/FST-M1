@@ -1,4 +1,4 @@
-package liveProject;
+package Project;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
@@ -39,7 +39,7 @@ public class Activity4 {
         // Server URL
         URL serverURL = new URI("http://localhost:4723").toURL();
 
-        // Driver initialization
+        // Driver initialization , wait initialisation
         driver = new AndroidDriver(serverURL, options);
         wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 

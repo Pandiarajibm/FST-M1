@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import io.restassured.response.Response;
 
 public class Activity1 {
+	
 	@Test(priority = 1)
 	public void addNewPet() {
 		Map<String, Object> reqBody = new HashMap<>();
@@ -18,6 +19,7 @@ public class Activity1 {
 		reqBody.put("name", "Kiley");
 		reqBody.put("status", "alive");
 
+		
 		Response response = given()
 			.baseUri("https://petstore.swagger.io/v2/pet") // Set base URI
 			.header("Content-Type", "application/json") // Set headers
@@ -52,7 +54,7 @@ public class Activity1 {
 			.when().pathParam("petId", 585858) // Set path parameter
 			.delete("/{petId}"); // Send DELETE request
 
-		// Assertion
+		// Assertions
 		response.then().body("code", equalTo(200));
 		response.then().body("message", equalTo("585858"));
 	}

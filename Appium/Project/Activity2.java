@@ -1,4 +1,4 @@
-package liveProject;
+package Project;
 
 import static activities.ActionsBase.longPress;
 
@@ -64,7 +64,7 @@ public class Activity2 {
 
 		// Assertions
 		String expectedDeadline = driver.findElement(AppiumBy.id("tv_exlv_task_deadline")).getText();
-		Assert.assertEquals(expectedDeadline, "Deadline: 15.02.2025");
+		Assert.assertEquals(expectedDeadline, "Deadline: 15.03.2025");
 	}
 
 	@AfterClass
