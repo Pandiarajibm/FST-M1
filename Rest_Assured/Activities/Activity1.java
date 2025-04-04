@@ -54,7 +54,7 @@ public class Activity1 {
 			.when().pathParam("petId", 585898) // Set path parameter
 			.delete("/{petId}"); // Send DELETE request
 
-		// Assertions
+		// Assertions code and message
 		response.then().body("code", equalTo(200));
 		response.then().body("message", equalTo("585898"));
 	}
