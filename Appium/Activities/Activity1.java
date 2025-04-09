@@ -1,6 +1,5 @@
 package activities;
 
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -44,15 +43,11 @@ public class Activity1 {
 	    // Test method
 	    @Test
 	    public void multiplyTest() {
-	        // clear existing values
-			//driver.findElement(AppiumBy.id("clr")).click();
-			// Perform the calculation
-			//in appium inspector/ appium emulator tap digit 5, get the id value 
+	        //  
 			driver.findElement(AppiumBy.id("digit_5")).click();
 	        //find and tap the multiply symbol
 			driver.findElement(AppiumBy.accessibilityId("multiply")).click();
-			//in appium inspector tap digit 5, get the id value 
-	        driver.findElement(AppiumBy.id("digit_8")).click();
+			driver.findElement(AppiumBy.id("digit_8")).click();
 	        driver.findElement(AppiumBy.accessibilityId("equals")).click();
 
 	        // Find the result
