@@ -18,11 +18,9 @@ import io.appium.java_client.ios.options.XCUITestOptions;
 public class Activity1 {
 	    // Driver Declaration
 		AppiumDriver driver;
-		//AndroidDriver driver;
-	    // Set up method
-	    @BeforeClass
-	    //public void setUp() throws MalformedURLException, URISyntaxException {
-	    
+	
+		// Set up method
+		@BeforeClass
 	    public void androidSetUP() throws MalformedURLException, URISyntaxException{
 			// Set Desired Capabilities
 	        UiAutomator2Options options = new UiAutomator2Options().
@@ -43,12 +41,18 @@ public class Activity1 {
 	    // Test method
 	    @Test
 	    public void multiplyTest() {
-	        //  
-			driver.findElement(AppiumBy.id("digit_5")).click();
-	        //find and tap the multiply symbol
+	        
+	    	//using accesibilty id,
+			
+	    	driver.findElement(AppiumBy.accessibilityId("clear")).click();
+	    	
+	    	driver.findElement(AppiumBy.id("digit_5")).click();
+	    
 			driver.findElement(AppiumBy.accessibilityId("multiply")).click();
+			
 			driver.findElement(AppiumBy.id("digit_8")).click();
-	        driver.findElement(AppiumBy.accessibilityId("equals")).click();
+	        
+			driver.findElement(AppiumBy.accessibilityId("equals")).click();
 
 	        // Find the result
 	        String result = driver.findElement(AppiumBy.id("result_final")).getText();
