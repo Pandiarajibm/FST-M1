@@ -40,11 +40,9 @@ public class Activity1 {
 
 	    // Test method
 	    @Test
-	    public void multiplyTest() {
-	        
-	    	//using accesibilty id,
-			
-	    	driver.findElement(AppiumBy.accessibilityId("clear")).click();
+	    public void basicLocators() {
+	        //using accesibilty id,
+			driver.findElement(AppiumBy.accessibilityId("clear")).click();
 	    	
 	    	driver.findElement(AppiumBy.id("digit_5")).click();
 	    
