@@ -22,7 +22,7 @@ public class Activity1 {
 		// Set up method
 		@BeforeClass
 	    public void androidSetUP() throws MalformedURLException, URISyntaxException{
-			// Set Desired Capabilities
+		// Set Desired Capabilities
 	        UiAutomator2Options options = new UiAutomator2Options().
 	        setPlatformName("android").
 	        setAutomationName("UiAutomator2").
