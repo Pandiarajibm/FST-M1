@@ -43,15 +43,13 @@ public class Activity1 {
 	    public void variousLocators() {
 	        //using accesibilty id,
 			driver.findElement(AppiumBy.accessibilityId("clear")).click();
-	    	
-	    	driver.findElement(AppiumBy.id("digit_5")).click();
-	    
-			driver.findElement(AppiumBy.accessibilityId("multiply")).click();
-			
+	        //using id,
+ 	    	driver.findElement(AppiumBy.id("digit_5")).click();
+	    	driver.findElement(AppiumBy.accessibilityId("multiply")).click();
 			driver.findElement(AppiumBy.id("digit_8")).click();
-	        
-			driver.findElement(AppiumBy.accessibilityId("equals")).click();
-	        // Find the result using xpath
+	    	driver.findElement(AppiumBy.accessibilityId("equals")).click();
+	    
+	    	// Find the result using xpath
 	        String result = driver.findElement(AppiumBy.xpath("//android.widget.ViewText[@resource-id='result_final']")).getText();
 
 	        // Assertion
