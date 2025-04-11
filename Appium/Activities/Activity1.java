@@ -43,7 +43,8 @@ public class Activity1 {
 	    public void variousLocators() {
 	        //using accesibilty id,
 			driver.findElement(AppiumBy.accessibilityId("clear")).click();
-	        //using id,
+	      
+			//using id,
  	    	driver.findElement(AppiumBy.id("digit_5")).click();
 	    	driver.findElement(AppiumBy.accessibilityId("multiply")).click();
 			driver.findElement(AppiumBy.id("digit_8")).click();
