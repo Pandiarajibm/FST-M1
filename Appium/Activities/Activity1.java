@@ -40,7 +40,7 @@ public class Activity1 {
 
 	    // Test method
 	    @Test
-	    public void basicLocators() {
+	    public void variousLocators() {
 	        //using accesibilty id,
 			driver.findElement(AppiumBy.accessibilityId("clear")).click();
 	    	
@@ -53,7 +53,7 @@ public class Activity1 {
 			driver.findElement(AppiumBy.accessibilityId("equals")).click();
 
 	        // Find the result
-	        String result = driver.findElement(AppiumBy.id("result_final")).getText();
+	        String result = driver.findElement(AppiumBy.xpath("//android.widget.ViewText[@resource-id='result_final']")).getText();
 
 	        // Assertion
 	        Assert.assertEquals(result, "40");
