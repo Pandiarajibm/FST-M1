@@ -52,7 +52,7 @@ public class Activity1 {
 	        
 			driver.findElement(AppiumBy.accessibilityId("equals")).click();
 
-	        // Find the result
+	        // Find the result using xpath
 	        String result = driver.findElement(AppiumBy.xpath("//android.widget.ViewText[@resource-id='result_final']")).getText();
 
 	        // Assertion
